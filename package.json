@@ -108,6 +108,7 @@
     "@vanilla/react-utils": "workspace:^",
     "@vanilla/ui": "workspace:^",
     "@vanilla/utils": "workspace:^",
+    "add-to-calendar-button": "^2.12.6",
     "axios": "^1.7.9",
     "classnames": "2.2.6",
     "css-box-model": "^1.2.1",
