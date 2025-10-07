@@ -114,6 +114,7 @@ const optimizedPackages = [
     "@udecode/plate-paragraph",
     "react-virtualized",
     "react-scan",
+    "add-to-calendar-button",
 ];
 
 const warmupGlobs = [...getVanillaSrcDirs().map((dir) => dir + "/entries/*")];
