@@ -6,7 +6,8 @@
         "skipDefaultLibCheck": true,
         "types": ["vitest/globals", "jquery"],
         "esModuleInterop": true,
-        "moduleResolution": "bundler"
+        "moduleResolution": "bundler",
+        "ignoreDeprecations": "6.0"
     },
     "files": [
         "library/src/scripts/htmlWidget/HtmlWidgetEditor.d.ts",
