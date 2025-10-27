@@ -1920,6 +1920,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@instructure.ai/aiinfo@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@instructure.ai/aiinfo@npm:2.0.0"
+  checksum: 10c0/62aa6a511848b3c4614c68d66a9fcbb2e07995eb5c2e4aa0aada86dada9e635871b80660dab450e6feb99a83f8907f5d67f36ef9605b96e8674f70659dddbb43
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -11504,6 +11511,14 @@ __metadata:
   languageName: node
   linkType: hard
 
+"instructure-777da6@workspace:plugins/instructure":
+  version: 0.0.0-use.local
+  resolution: "instructure-777da6@workspace:plugins/instructure"
+  dependencies:
+    "@instructure.ai/aiinfo": "npm:^2.0.0"
+  languageName: unknown
+  linkType: soft
+
 "internal-slot@npm:^1.0.4, internal-slot@npm:^1.0.7":
   version: 1.0.7
   resolution: "internal-slot@npm:1.0.7"
@@ -18425,6 +18440,7 @@ __metadata:
     "@dnd-kit/utilities": "npm:^3.2.2"
     "@emotion/cache": "npm:^11.14.0"
     "@emotion/css": "npm:^11.13.5"
+    "@instructure.ai/aiinfo": "npm:^2.0.0"
     "@monaco-editor/react": "npm:^4.7.0"
     "@prettier/plugin-php": "npm:^0.18.9"
     "@radix-ui/react-tabs": "npm:^1.1.3"
