@@ -6642,12 +6642,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"add-to-calendar-button@npm:^2.12.6":
-  version: 2.12.6
-  resolution: "add-to-calendar-button@npm:2.12.6"
+"add-to-calendar-button-react@npm:^2.12.13":
+  version: 2.12.13
+  resolution: "add-to-calendar-button-react@npm:2.12.13"
+  dependencies:
+    add-to-calendar-button: "npm:^2.12.13"
+  peerDependencies:
+    react: ">=18.0.0"
+    react-dom: ">=18.0.0"
+  checksum: 10c0/768387346e5d6f1ec8380fde6cba3ca42ffc00c2c63f4347af5922f23c7a391f5368431724ece542aa6f0b0184810b7da5c0f2474a9e5d9a7bbc264b74ab0d79
+  languageName: node
+  linkType: hard
+
+"add-to-calendar-button@npm:^2.12.13":
+  version: 2.12.13
+  resolution: "add-to-calendar-button@npm:2.12.13"
   dependencies:
     timezones-ical-library: "npm:^1.10.0"
-  checksum: 10c0/faf88ab9da1b6add30e690ced992bee06c9cfeea9beb230b0bc350a9dbf384a3d67ee6ce49ed4467922cb4e42250c6ecfc352d754fb7dec6ab10bfbce14214dc
+  checksum: 10c0/775d361845eaa15f5588706d8499471e3853efd62a9a097d8853da40c0126b1444fccacab451c88bc523aac29767753b65e10143b3ce37a7dbb144656e1f44a3
   languageName: node
   linkType: hard
 
@@ -18531,7 +18543,8 @@ __metadata:
     "@vitest/browser": "npm:^3.0.8"
     "@vitest/coverage-v8": "patch:@vitest/coverage-v8@npm%3A3.0.8#~/.yarn/patches/@vitest-coverage-v8-npm-3.0.8-bc508afd36.patch"
     "@vitest/ui": "npm:^3.0.8"
-    add-to-calendar-button: "npm:^2.12.6"
+    add-to-calendar-button: "npm:^2.12.13"
+    add-to-calendar-button-react: "npm:^2.12.13"
     axios: "npm:^1.7.9"
     axios-mock-adapter: "npm:^1.22.0"
     buffer: "npm:^6.0.3"
