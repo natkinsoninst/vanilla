@@ -6642,7 +6642,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"add-to-calendar-button-react@npm:^2.12.13":
+"add-to-calendar-button-react@npm:^2.12.13, add-to-calendar-button-react@npm:^2.8.6":
   version: 2.12.13
   resolution: "add-to-calendar-button-react@npm:2.12.13"
   dependencies:
@@ -11528,6 +11528,10 @@ __metadata:
   resolution: "instructure-777da6@workspace:plugins/instructure"
   dependencies:
     "@instructure.ai/aiinfo": "npm:^2.0.2"
+    add-to-calendar-button-react: "npm:^2.8.6"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
   languageName: unknown
   linkType: soft
 
