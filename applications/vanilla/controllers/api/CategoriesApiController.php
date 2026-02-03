@@ -1088,8 +1088,6 @@ class CategoriesApiController extends AbstractApiController
                     "properties" => [
                         "userID" => ["type" => "integer"],
                         "name" => ["type" => "string"],
-                        "email" => ["type" => "string"],
-                        "role" => ["type" => "string"],
                         "dateFollowed" => ["type" => "string"],
                     ],
                 ],
@@ -1101,15 +1099,14 @@ class CategoriesApiController extends AbstractApiController
 
         // Build the query to get followers of the category
         $query_builder = $sql
-            ->select("u.UserID, u.Name, u.Email, r.Name as Role, uc.DateInserted as DateFollowed")
+            ->select("u.UserID, u.Name, uc.DateFollowed")
             ->from("UserCategory uc")
             ->join("User u", "uc.UserID = u.UserID")
-            ->leftJoin("Role r", "u.RoleID = r.RoleID")
             ->where([
                 "uc.CategoryID" => $id,
                 "uc.Followed" => 1,
             ])
-            ->orderBy("uc.DateInserted", "DESC");
+            ->orderBy("uc.DateFollowed", "DESC");
 
         // Handle limit of -1 for all results
         $limit = $query["limit"];
@@ -1129,8 +1126,6 @@ class CategoriesApiController extends AbstractApiController
             return [
                 "userID" => (int) $follower["UserID"],
                 "name" => $follower["Name"] ?? "",
-                "email" => $follower["Email"] ?? "",
-                "role" => $follower["Role"] ?? null,
                 "dateFollowed" => $follower["DateFollowed"] ?? "",
             ];
         }, $followers);
