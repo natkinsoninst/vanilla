@@ -1046,6 +1046,96 @@ class CategoriesApiController extends AbstractApiController
     }
 
     /**
+     * CUSTOM ENDPOINT: Get a list of users following a specific category.
+     * 
+     * This is a custom addition for the Instructure implementation to support
+     * the CategoryFollowersWidget. This method is self-contained and does not
+     * modify or interfere with any existing category functionality.
+     *
+     * @param int $id The target category's ID.
+     * @param array $query Query parameters for pagination and filtering.
+     * @return Data
+     * @throws NotFoundException
+     * @throws ValidationException
+     */
+    public function get_followers(int $id, array $query): Data
+    {
+        $this->permission();
+
+        // Validate the category exists
+        $this->category($id);
+
+        // Schema for query parameters
+        $in = $this->schema([
+            "page:i?" => [
+                "description" => "Page number. See Pagination.",
+                "default" => 1,
+                "minimum" => 1,
+            ],
+            "limit:i?" => [
+                "description" => "Desired number of items per page. Use -1 to get all followers.",
+                "default" => 30,
+                "minimum" => -1,
+            ],
+        ]);
+        $query = $in->validate($query);
+
+        // Schema for output
+        $out = $this->schema([
+            ":a" => [
+                "items" => [
+                    "type" => "object",
+                    "properties" => [
+                        "userID" => ["type" => "integer"],
+                        "name" => ["type" => "string"],
+                        "dateFollowed" => ["type" => "string"],
+                    ],
+                ],
+            ],
+        ]);
+
+        $sql = Gdn::sql();
+        $sql->reset();
+
+        // Build the query to get followers of the category
+        $query_builder = $sql
+            ->select("u.UserID, u.Name, uc.DateFollowed")
+            ->from("UserCategory uc")
+            ->join("User u", "uc.UserID = u.UserID")
+            ->where([
+                "uc.CategoryID" => $id,
+                "uc.Followed" => 1,
+            ])
+            ->orderBy("uc.DateFollowed", "DESC");
+
+        // Handle limit of -1 for all results
+        $limit = $query["limit"];
+        if ($limit === -1) {
+            $followers = $query_builder->get()->resultArray();
+        } else {
+            $page = $query["page"];
+            [$offset, $limit] = offsetLimit("p{$page}", $limit);
+            $followers = $query_builder
+                ->limit($limit, $offset)
+                ->get()
+                ->resultArray();
+        }
+
+        // Normalize the output
+        $result = array_map(function ($follower) {
+            return [
+                "userID" => (int) $follower["UserID"],
+                "name" => $follower["Name"] ?? "",
+                "dateFollowed" => $follower["DateFollowed"] ?? "",
+            ];
+        }, $followers);
+
+        $out->validate($result);
+
+        return new Data($result);
+    }
+
+    /**
      * Endpoint to get suggested categories based on interests.
      *
      * @return Data
